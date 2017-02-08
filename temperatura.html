@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it-IT">     
+  <head>
+      
+    <meta charset="UTF-8" />	     
+    <title>
+		NG-t
+    </title>    
+    <link rel="stylesheet" type="text/css" media="all" href="lib/bootstrap/bootstrap.min.css" />
+  </head>     
+  <body ng-app="misurazione">
+      <div ng-controller="temperaturaController as t" class="col-md-9" style="margin-top:1em;">
+          
+    <form action="?p=temperatura" method="POST">
+	<caption>Nuova rilevazione:</caption>
+	<input ng-model="t.misurazione.datamisurazione" type="date" placeholder="data" required />
+	<input ng-model="t.misurazione.valore" type="number"  placeholder="temperatura" required />
+	<button type="submit" ng-click="t.addRow()">Salva</button>
+        <button ng-click="t.clear()">Reset</button>
+    </form>
+          
+          <br />
+          <table class="table table-striped" id="Tabpe">
+            <tr>
+                <th>Data</th>
+                <th>Valore temperatura</th>
+                <th> &nbsp; </th>
+            </tr>
+            
+            <tr ng-repeat="(k,x) in t.val">
+                <td>{{ x.datamisurazione }}</td>
+                <td>{{ x.valore }}</td>
+                <td><input type="button" value="Remove" class="btn btn-primary" ng-click="t.removeRow(k)"/></td>
+            </tr>
+            
+        </table>
+      </div>
+     
+      
+        <!--app-footer ver="app.ver" today="app.today"></app-footer-->
+
+        <script src="lib/jquery/jquery-3.1.0.min.js"></script>
+        <script src="lib/bootstrap/bootstrap.min.js"></script>
+        <script src="lib/angular/angular.min.js"></script>
+      <!-- modulo utilizzato e sue componenti -->
+
+        <script src="js/app.js"></script>
+        <script src="js/services/temperaturaService.js"></script>
+        <script src="js/controllers/temperaturaController.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" 
+                integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                crossorigin="anonymous">
+        </script>
+        
+       
+  </body>
+</html>
